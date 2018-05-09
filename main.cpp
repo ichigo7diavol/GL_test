@@ -6,17 +6,6 @@
 #define GLFW_DLL
 #include "GLFW/glfw3.h"
 
-static const char* vertex_shader_text =
-"uniform mat4 MVP;\n"
-"attribute vec3 vCol;\n"
-"attribute vec2 vPos;\n"
-"varying vec3 color;\n"
-"void main()\n"
-"{\n"
-"    gl_Position = MVP * vec4(vPos, 0.0, 1.0);\n"
-"    color = vCol;\n"
-"}\n";
-
 void resize(GLFWwindow * _pwin, int w, int h)
 {
     glViewport(0, 0, w, h); // изменить размер после ресайза
@@ -28,7 +17,7 @@ void mouseHandler (GLFWwindow * _pwin, double x, double y)
 {
     glClearColor(0xFF, (float)x/0xFF, (float)y/0xFF, 0.0);
 
-    std::cout << x << " " << y << std::endl;
+    //std::cout << x << " " << y << std::endl;
 }
 
 void setup(GLFWwindow * _pwin)
@@ -52,20 +41,18 @@ int main(void)
     GLFWwindow* window;
 
     if (!glfwInit())
-        return -1;
+        return 1;
 
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
-        return -1;
+        return 2;
     }
 
     glfwMakeContextCurrent(window);
 
     glewInit();
-
-
 
     setup(window);
 
@@ -80,8 +67,8 @@ int main(void)
 
         glVertex3f(20.0, 20.0, 0.0);
         glVertex3f(80.0, 20.0, 0.0);
-        glVertex3f(80.0, 80.0, 0.0);
-        glVertex3f(20.0, 80.0, 0.0);
+        glVertex3f(80.0, 100.0, 0.0);
+        glVertex3f(20.0, 100.0, 0.0);
 
         glEnd();
 
